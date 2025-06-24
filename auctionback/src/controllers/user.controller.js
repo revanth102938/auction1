@@ -91,12 +91,6 @@ const Loginuser = asynchandler(async(req, res) => {
     const { accessToken, refreshToken } = await generateaccessandrefreshtokens(user._id);
     user.refreshtoken = refreshToken;
     await user.save();
-    // const options = {
-    //     httpOnly: true,
-    //     secure: process.env.NODE_ENV === "production",
-    //     sameSite: "strict",
-    //     maxAge: 24 * 60 * 60 * 1000 // 1 day
-    // };
     const options = {
         httpOnly: true,
         secure: true,

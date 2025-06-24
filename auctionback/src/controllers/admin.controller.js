@@ -5,7 +5,7 @@ import Auctionrequest from "../models/auctionrequest.models.js";
 import Auction from "../models/auction.models.js";
 
 
-// View all pending requests
+
 const viewallpendingrequests = asynchandler(async (req, res) => {
   const pendingRequests = await Auctionrequest.find({ status: "pending" })
     .populate("requestedby", "username fullname avatar")
@@ -21,7 +21,7 @@ const viewallpendingrequests = asynchandler(async (req, res) => {
     .json(new apiresponse(200, pendingRequests, "Pending requests retrieved successfully"));
 });
 
-// Accept a request and create an auction
+
 const acceptrequest = asynchandler(async (req, res) => {
   const requestId = req.params.id;
   if (!requestId) {
@@ -56,7 +56,6 @@ const acceptrequest = asynchandler(async (req, res) => {
     .json(new apiresponse(200, { request, auction }, "Request accepted and auction created successfully"));
 });
 
-// Reject a request
 const rejectrequest = asynchandler(async (req, res) => {
   const requestId = req.params.id;
   if (!requestId) {
@@ -84,7 +83,7 @@ const rejectrequest = asynchandler(async (req, res) => {
     .json(new apiresponse(200, request, "Request rejected successfully"));
 });
 
-// Close an active auction manually
+
 const closeauction = asynchandler(async (req, res) => {
   const auctionId = req.params.id;
   if (!auctionId) {
@@ -100,7 +99,7 @@ const closeauction = asynchandler(async (req, res) => {
     throw new apierror(400, "Auction is not active");
   }
 
-  auction.status = "ended";  // change to 'ended' to match enum in model
+  auction.status = "ended";  
   auction.endtime = new Date();
   await auction.save();
 

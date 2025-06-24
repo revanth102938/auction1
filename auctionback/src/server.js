@@ -17,7 +17,7 @@ const io = new Server(server, {
   },
 });
 
-const auctionTimers = {}; // Track endTime + timeout handler per auction
+const auctionTimers = {}; 
 
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
@@ -41,12 +41,12 @@ io.on('connection', (socket) => {
 
       const endTime = Date.now() + 2 * 60 * 1000;
 
-      // Clear existing timeout if present
+
       if (auctionTimers[auctionId]?.timeout) {
         clearTimeout(auctionTimers[auctionId].timeout);
       }
 
-      // Schedule auction end after 2 minutes
+
       const timeout = setTimeout(async () => {
         const finalBids = await Bid.find({ auction: auctionId })
           .sort({ createdAt: -1 })

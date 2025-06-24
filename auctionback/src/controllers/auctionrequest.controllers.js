@@ -16,12 +16,12 @@ const submitauctionrequest = asynchandler(async (req, res) => {
     throw new apierror(400, "Name, description, and base price are required");
   }
 
-  // Check file presence
+  
   if (!req.file || !req.file.path) {
     throw new apierror(400, "Image file is required");
   }
 
-  // Upload to Cloudinary
+  
   const cloudinaryResult = await uploadToCloudinary(req.file.path);
   if (!cloudinaryResult || !cloudinaryResult.secure_url) {
     throw new apierror(500, "Failed to upload image to Cloudinary");

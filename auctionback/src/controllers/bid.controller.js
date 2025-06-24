@@ -3,9 +3,9 @@ import { apierror } from "../utils/apierror.js";
 import { apiresponse } from "../utils/apiresponse.js";
 import Bid from '../models/bid.models.js';
 import Auction from '../models/auction.models.js';
-// import { resetAuctionTimer } from "../utils/auctiontimer.js";
 
-// PLACE BID
+
+
 const placebid = asynchandler(async (req, res) => {
   const user = req.user;
   if (!user) throw new apierror(400, "User should login first");
@@ -23,7 +23,7 @@ const placebid = asynchandler(async (req, res) => {
 
   if (amount <= auction.baseprice) throw new apierror(400, "Bid amount must be greater than the base price");
 
-  // update highest bid if needed
+
   if (!auction.highestbid || amount > auction.highestbid.amount) {
     auction.highestbid = {
       amount,
@@ -32,7 +32,7 @@ const placebid = asynchandler(async (req, res) => {
     await auction.save();
   }
 
-  // create and populate the bid
+
   const newBid = await Bid.create({
     auction: auctionid,
     bidder: user._id,
@@ -41,7 +41,7 @@ const placebid = asynchandler(async (req, res) => {
 
   const populatedBid = await Bid.findById(newBid._id).populate("bidder", "username");
 
-  // emit to all in the room
+
   req.io?.to(`auction_${auctionid}`).emit("newBid", {
     auctionId: auctionid,
     bid: {
@@ -54,15 +54,14 @@ const placebid = asynchandler(async (req, res) => {
     },
   });
 
-  // reset the timer for next bid
-  // resetAuctionTimer(auctionid);
+
 
   return res
     .status(200)
     .json(new apiresponse(200, populatedBid, "Bid placed successfully"));
 });
 
-// GET ALL BIDS FOR AN AUCTION
+
 const getallbidsofauction = asynchandler(async (req, res) => {
   const auctionId = req.params.auctionid;
   if (!auctionId) throw new apierror(400, "Auction ID is required");
@@ -76,7 +75,7 @@ const getallbidsofauction = asynchandler(async (req, res) => {
     .json(new apiresponse(200, bids, "Bids retrieved successfully"));
 });
 
-// GET ALL BIDS BY CURRENT USER
+
 const getallbidsbyme = asynchandler(async (req, res) => {
   const user = req.user;
   if (!user) throw new apierror(400, "User should login first");
@@ -94,7 +93,6 @@ const getallbidsbyme = asynchandler(async (req, res) => {
     .json(new apiresponse(200, bids, "Bids by user retrieved successfully"));
 });
 
-// GET HIGHEST BID FOR AN AUCTION
 const gethighestbidforauction = asynchandler(async (req, res) => {
   const auctionid = req.params.id;
   if (!auctionid) throw new apierror(400, "Auction ID is required");

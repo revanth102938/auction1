@@ -8,9 +8,9 @@ const AuctionCard = ({ auction }) => {
         <img
           src={auction.imageUrl}
           alt={auction.name}
-          className="h-32 w-full object-cover" // Adjust image height to fit within total height
+          className="h-32 w-full object-cover"
         />
-        <div className="p-4 overflow-auto h-60 scrollbar-none"> {/* Scrollable content */}
+        <div className="p-4 overflow-auto h-60 scrollbar-none"> 
           <h2 className="text-lg font-bold text-gray-800">{auction.name}</h2>
           <p className="text-gray-600 text-sm mt-1">{auction.description}</p>
           <p className="mt-2 text-yellow-700 font-semibold">

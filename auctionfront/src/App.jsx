@@ -14,10 +14,7 @@ function App() {
     <UserProvider>
       <Router>
         <Routes>
-          {/* Public full-page landing route (no layout) */}
           <Route path="/" element={<Landing />} />
-
-          {/* Routes wrapped with Header/Footer */}
           <Route element={<Layout />}>
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />

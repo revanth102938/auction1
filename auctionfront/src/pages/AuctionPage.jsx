@@ -15,7 +15,7 @@ const AuctionPage = () => {
   const [auctionDetails, setAuctionDetails] = useState(null);
   const [auctionEnded, setAuctionEnded] = useState(false);
   const [winnerInfo, setWinnerInfo] = useState(null);
-  const [statusChecked, setStatusChecked] = useState(false); // ensure status is checked before render
+  const [statusChecked, setStatusChecked] = useState(false); 
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -42,7 +42,6 @@ const AuctionPage = () => {
         const details = res.data.data;
         setAuctionDetails(details);
         console.log("Auction Details:", details);
-        // Check if auction has ended from DB
         if (details.status !== "active") {
           setAuctionEnded(true);
 

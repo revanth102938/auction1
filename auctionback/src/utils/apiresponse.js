@@ -11,4 +11,3 @@ class apiresponse{
     }
 }
 export { apiresponse };
-// This code defines a class `apiresponse` that is used to structure API responses in a consistent format.

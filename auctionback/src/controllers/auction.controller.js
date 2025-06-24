@@ -4,7 +4,7 @@ import { apiresponse } from "../utils/apiresponse.js";
 import Auction from "../models/auction.models.js";
 import mongoose from "mongoose";
 
-// GET /active-auctions
+
 const getallactiveauctions = asynchandler(async (req, res) => {
   const activeauctions = await Auction.aggregate([
     { $match: { status: "active" } },
@@ -46,7 +46,7 @@ const getallactiveauctions = asynchandler(async (req, res) => {
     .json(new apiresponse(200, activeauctions, "Active auctions retrieved successfully"));
 });
 
-// GET /auction/:id
+
 const getauctionbyid = asynchandler(async (req, res) => {
   const auctionId = req.params.id;
 
@@ -113,7 +113,7 @@ const getallauctions = asynchandler(async (req, res) => {
     .json(new apiresponse(200, auctions, "All auctions retrieved successfully"));
 });
 
-// GET /user/auctions
+
 const getallauctionsbyuser = asynchandler(async (req, res) => {
   const user = req.user;
   if (!user) {
