@@ -48,7 +48,7 @@ const AuctionPage = () => {
           if (details.winner && details.finalPrice) {
             try {
               const winnerRes = await AxiosInstance.get(
-                `users/${details.winner}`
+                `/users/${details.winner}`
               );
               console.log("Winner Response:", winnerRes.data);
               const winnerUsername = winnerRes.data.data?.username || "Unknown";
