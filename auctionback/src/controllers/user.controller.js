@@ -94,6 +94,8 @@ const Loginuser = asynchandler(async(req, res) => {
     const options = {
         httpOnly: true,
         secure: true,
+        sameSite: "None",
+        maxAge: 24 * 60 * 60 * 1000
     };
     return res
         .status(200)
@@ -121,6 +123,8 @@ const Logoutuser = asynchandler(async(req, res) => {
     const options = {
         httpOnly: true,
         secure: true,
+        sameSite: "None",
+        maxAge: 24 * 60 * 60 * 1000
     };
     return res
         .status(200)
