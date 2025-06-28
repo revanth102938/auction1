@@ -137,7 +137,11 @@ const AuctionPage = () => {
   };
 
   if (!statusChecked)
-    return <div className="p-6">Checking auction status...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-300">
+        <div className="w-16 h-16 border-4 border-yellow-400 border-t-yellow-600 rounded-full animate-spin"></div>
+      </div>
+    );
 
   return (
     <div className="p-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
