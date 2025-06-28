@@ -20,16 +20,6 @@ const userschema = new Schema(
       lowercase: true,
       trim: true,
     },
-    fullname: {
-      type: String,
-      required: true,
-      trim: true,
-      index: true,
-    },
-    avatar: {
-      type: String,
-      required: true,
-    },
     password: {
       type: String,
       required: [true, "Password is required"],

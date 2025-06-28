@@ -3,7 +3,7 @@ import { apiresponse } from "../utils/apiresponse.js";
 import { asynchandler } from "../utils/asynchandler.js";
 import Auctionrequest from "../models/auctionrequest.models.js";
 import Auction from "../models/auction.models.js";
-
+import User from "../models/user.models.js";
 
 
 const viewallpendingrequests = asynchandler(async (req, res) => {
@@ -83,6 +83,23 @@ const rejectrequest = asynchandler(async (req, res) => {
     .json(new apiresponse(200, request, "Request rejected successfully"));
 });
 
+const getAdminStats = asynchandler(async (req, res) => {
+  const users = await User.find().select("-password -refreshtoken").sort({ createdAt: -1 });
+  const auctions = await Auction.find().sort({ createdAt: -1 }).populate('winner', 'username');
+
+  const stats = {
+    users: users.length,
+    auctions: auctions.length,
+    active: auctions.filter(a => a.status === "active").length,
+    completed: auctions.filter(a => a.status === "ended").length,
+    recentUsers: users.slice(0, 5),
+    recentAuctions: auctions.slice(0, 5),
+  };
+
+  return res.status(200).json(new apiresponse(200, stats, "Admin stats fetched"));
+});
+
+
 
 const closeauction = asynchandler(async (req, res) => {
   const auctionId = req.params.id;
@@ -113,4 +130,5 @@ export {
   acceptrequest,
   rejectrequest,
   closeauction,
+  getAdminStats
 };

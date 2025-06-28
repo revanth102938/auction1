@@ -8,7 +8,8 @@ import SubmitAuctionRequest from "./pages/SubmitAuctionRequest.jsx";
 import AdminManageAuctions from "./pages/AdminManageRequests.jsx";
 import AllAuctions from "./pages/AllAuctions.jsx";
 import Layout from "./pages/Layout.jsx"; 
-
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx"; // Import ErrorPage
 function App() {
   return (
     <UserProvider>
@@ -22,6 +23,8 @@ function App() {
             <Route path="/auctions/:auctionId" element={<AuctionPage />} />
             <Route path="/submit-request" element={<SubmitAuctionRequest />} />
             <Route path="/admin/auctions" element={<AdminManageAuctions />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
       </Router>

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import AxiosInstance from '../utils/ApiConfig.js';
-import AuctionCard from '../components/AuctionCard.jsx';
+import React, { useEffect, useState } from "react";
+import AxiosInstance from "../utils/ApiConfig.js";
+import AuctionCard from "../components/AuctionCard.jsx";
 
 const AllAuctions = () => {
   const [auctions, setAuctions] = useState([]);
@@ -9,10 +9,13 @@ const AllAuctions = () => {
   useEffect(() => {
     const fetchAuctions = async () => {
       try {
-        const res = await AxiosInstance.get('/auctions');
+        const res = await AxiosInstance.get("/auctions");
         setAuctions(res.data.data || []);
       } catch (err) {
-        console.error('Failed to fetch auctions:', err.response?.data || err.message);
+        console.error(
+          "Failed to fetch auctions:",
+          err.response?.data || err.message
+        );
       } finally {
         setLoading(false);
       }
@@ -25,7 +28,9 @@ const AllAuctions = () => {
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-6">All Auctions</h1>
       {loading ? (
-        <p>Loading...</p>
+        <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-300">
+          <div className="w-16 h-16 border-4 border-yellow-400 border-t-yellow-600 rounded-full animate-spin"></div>
+        </div>
       ) : auctions.length === 0 ? (
         <p>No auctions found.</p>
       ) : (

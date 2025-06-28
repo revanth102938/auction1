@@ -2,7 +2,7 @@ import User from "../models/user.models.js";
 import { apierror } from "../utils/apierror.js";
 import { apiresponse } from "../utils/apiresponse.js";
 import { asynchandler } from "../utils/asynchandler.js";
-
+import { uploadToCloudinary } from "../utils/cloudinary.js";
 
 const generateaccessandrefreshtokens = async(userId)=>{
     const user = await User.findById(userId);
@@ -14,9 +14,9 @@ const generateaccessandrefreshtokens = async(userId)=>{
     return { accessToken, refreshToken };
 }
 const registeruser = asynchandler(async(req , res) =>{
-    const { username, email, fullname, avatar, password } = req.body;
+    const { username, email, password } = req.body;
 
-    if (!username || !email || !fullname || !password) {
+    if (!username || !email  || !password) {
         throw new apierror(400, "All fields are required");
     }
     const existingUser = await User.findOne({ email });
@@ -40,8 +40,6 @@ const registeruser = asynchandler(async(req , res) =>{
     const newUser = await User.create({
         username,
         email,
-        fullname,
-        avatar:avatarurl,
         password
     });
     if (!newUser) {
@@ -166,10 +164,24 @@ const getuserbyid = asynchandler(async(req, res) => {
             new apiresponse(200, user, "User retrieved successfully")
         );
 });
+
+const getallusers = asynchandler(async (req, res) => {
+    const users = await User.find().select("-password -refreshtoken").lean();
+
+    if (users.length === 0) {
+        throw new apierror(404, "No users found");
+    }
+
+    return res.status(200).json(
+        new apiresponse(200, users, "Users retrieved successfully")
+    );
+});
+
 export {
     registeruser,
     Loginuser,
     Logoutuser,
     getuserdetails,
-    getuserbyid
+    getuserbyid,
+    getallusers
 }

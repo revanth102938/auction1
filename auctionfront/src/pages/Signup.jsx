@@ -37,65 +37,92 @@ export default function SignUp() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-100 to-white flex justify-center items-center">
-      <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-6 text-yellow-700">
-          Create Your AuctionIt Account
+    <div className="min-h-screen bg-gradient-to-br from-yellow-100 to-white flex items-center justify-center px-4">
+      <div className="w-full max-w-md backdrop-blur-lg bg-white/70 border border-yellow-300 shadow-2xl rounded-3xl p-8">
+        <h2 className="text-3xl font-bold text-center text-yellow-700 mb-6">
+          Create an Account
         </h2>
 
         {errorMessage && (
-          <div className="text-red-600 text-sm text-center mb-4">{errorMessage}</div>
+          <div className="text-red-600 text-sm text-center mb-4">
+            {errorMessage}
+          </div>
         )}
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <input
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            type="text"
-            placeholder="Enter your username"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-            required
-          />
-          <input
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            type="email"
-            placeholder="you@example.com"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-            required
-          />
-          <input
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            type="password"
-            placeholder="Create a password"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-            required
-          />
-          <input
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            type="password"
-            placeholder="Confirm your password"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-            required
-          />
-          <select
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-          >
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
+        <form className="space-y-5" onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Username
+            </label>
+            <input
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              type="text"
+              placeholder="Enter your username"
+              className="w-full px-4 py-2 rounded-xl border border-yellow-300 focus:ring-2 focus:ring-yellow-400 outline-none transition duration-300"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Email
+            </label>
+            <input
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              type="email"
+              placeholder="you@example.com"
+              className="w-full px-4 py-2 rounded-xl border border-yellow-300 focus:ring-2 focus:ring-yellow-400 outline-none transition duration-300"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Password
+            </label>
+            <input
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              type="password"
+              placeholder="Create a password"
+              className="w-full px-4 py-2 rounded-xl border border-yellow-300 focus:ring-2 focus:ring-yellow-400 outline-none transition duration-300"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Confirm Password
+            </label>
+            <input
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              type="password"
+              placeholder="Confirm your password"
+              className="w-full px-4 py-2 rounded-xl border border-yellow-300 focus:ring-2 focus:ring-yellow-400 outline-none transition duration-300"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Role
+            </label>
+            <select
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-xl border border-yellow-300 focus:ring-2 focus:ring-yellow-400 outline-none transition duration-300"
+            >
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
           <button
             type="submit"
-            className="w-full bg-yellow-500 hover:bg-yellow-400 text-white py-2 rounded-lg"
+            className="w-full bg-yellow-500 hover:bg-yellow-400 text-white py-2.5 rounded-xl text-lg font-medium transition duration-300"
           >
             Sign Up
           </button>

@@ -5,7 +5,8 @@ import {
   Loginuser,
   Logoutuser,
   getuserdetails,
-  getuserbyid
+  getuserbyid,
+  getallusers
 } from "../controllers/user.controller.js";
 const router = Router();
 router.route("/signup").post(registeruser);
@@ -18,6 +19,7 @@ router.get("/getuser", verifyjwt, getuserdetails);
 
 router.get("/me", verifyjwt, getuserdetails);
 
+router.get("/all",getallusers)
 router.get("/:id", getuserbyid);
 
 export default router;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import socket from "../utils/socket";
 import UserContext from "../context/UserContext";
 import AxiosInstance from "../utils/ApiConfig";
-
 const AuctionPage = () => {
+  const navigate = useNavigate();
   const { auctionId } = useParams();
   const { user } = useContext(UserContext);
   console.log("user:", user);
@@ -15,8 +15,13 @@ const AuctionPage = () => {
   const [auctionDetails, setAuctionDetails] = useState(null);
   const [auctionEnded, setAuctionEnded] = useState(false);
   const [winnerInfo, setWinnerInfo] = useState(null);
-  const [statusChecked, setStatusChecked] = useState(false); 
+  const [statusChecked, setStatusChecked] = useState(false);
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/signin");
+    }
+  }, [user, navigate]);
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
