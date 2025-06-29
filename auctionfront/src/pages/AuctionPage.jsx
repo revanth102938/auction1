@@ -138,8 +138,8 @@ const AuctionPage = () => {
 
   if (!statusChecked)
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-300">
-        <div className="w-16 h-16 border-4 border-yellow-400 border-t-yellow-600 rounded-full animate-spin"></div>
+      <div className="flex justify-center items-center min-h-screen bg-white">
+        <div className="w-16 h-16 border-4 border-yellow-200 border-t-yellow-600 rounded-full animate-spin"></div>
       </div>
     );
 
@@ -165,7 +165,9 @@ const AuctionPage = () => {
             </p>
           </div>
         ) : (
-          <p>Loading auction details...</p>
+          <div className="flex justify-center items-center min-h-screen bg-white">
+            <div className="w-16 h-16 border-4 border-yellow-200 border-t-yellow-600 rounded-full animate-spin"></div>
+          </div>
         )}
       </div>
 

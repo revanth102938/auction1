@@ -24,7 +24,7 @@ const SubmitAuctionRequest = () => {
     if (name === "image") {
       const file = files[0];
       setFormData((prev) => ({ ...prev, image: file }));
-      setImagePreview(URL.createObjectURL(file)); 
+      setImagePreview(URL.createObjectURL(file));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
@@ -61,11 +61,10 @@ const SubmitAuctionRequest = () => {
     }
   };
 
-
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-300">
-        <div className="w-16 h-16 border-4 border-yellow-400 border-t-yellow-600 rounded-full animate-spin"></div>
+      <div className="flex justify-center items-center min-h-screen bg-white">
+        <div className="w-16 h-16 border-4 border-yellow-200 border-t-yellow-600 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -83,11 +82,15 @@ const SubmitAuctionRequest = () => {
           Submit Auction Request
         </h2>
 
-        {error && <p className="text-red-500 text-sm mb-4 text-center">{error}</p>}
+        {error && (
+          <p className="text-red-500 text-sm mb-4 text-center">{error}</p>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-yellow-800 mb-1">Item Name</label>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Item Name
+            </label>
             <input
               type="text"
               name="name"
@@ -100,7 +103,9 @@ const SubmitAuctionRequest = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-yellow-800 mb-1">Description</label>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Description
+            </label>
             <textarea
               name="description"
               value={formData.description}
@@ -112,7 +117,9 @@ const SubmitAuctionRequest = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-yellow-800 mb-1">Base Price (₹)</label>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Base Price (₹)
+            </label>
             <input
               type="number"
               name="baseprice"
@@ -125,7 +132,9 @@ const SubmitAuctionRequest = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-yellow-800 mb-1">Upload Image</label>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Upload Image
+            </label>
             <input
               type="file"
               name="image"
@@ -136,7 +145,9 @@ const SubmitAuctionRequest = () => {
             />
             {imagePreview && (
               <div className="mt-4">
-                <p className="text-sm text-yellow-800 font-medium mb-1">Preview:</p>
+                <p className="text-sm text-yellow-800 font-medium mb-1">
+                  Preview:
+                </p>
                 <img
                   src={imagePreview}
                   alt="Preview"

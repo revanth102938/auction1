@@ -22,7 +22,7 @@
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-//     setLoading(true); 
+//     setLoading(true);
 //     try {
 //       await AxiosInstance.post("/users/login", formData);
 //       await fetchUser();
@@ -31,7 +31,7 @@
 //       console.error(err.response?.data || err.message);
 //       setErrorMessage("Incorrect email or password");
 //     } finally {
-//       setLoading(false); 
+//       setLoading(false);
 //     }
 //   };
 
@@ -127,13 +127,15 @@ export default function SignIn() {
   };
 
   return loading ? (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-300">
-      <div className="w-16 h-16 border-4 border-yellow-400 border-t-yellow-600 rounded-full animate-spin"></div>
+    <div className="flex justify-center items-center min-h-screen bg-white">
+      <div className="w-16 h-16 border-4 border-yellow-200 border-t-yellow-600 rounded-full animate-spin"></div>
     </div>
   ) : (
     <div className="min-h-screen bg-gradient-to-br from-yellow-100 to-white flex items-center justify-center px-4">
       <div className="w-full max-w-md backdrop-blur-lg bg-white/70 border border-yellow-300 shadow-2xl rounded-3xl p-8">
-        <h2 className="text-3xl font-bold text-center text-yellow-700 mb-6">Welcome Back</h2>
+        <h2 className="text-3xl font-bold text-center text-yellow-700 mb-6">
+          Welcome Back
+        </h2>
 
         {errorMessage && (
           <div className="text-red-600 text-sm text-center mb-4">
@@ -143,7 +145,9 @@ export default function SignIn() {
 
         <form className="space-y-5" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-sm font-medium text-yellow-800 mb-1">Email</label>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Email
+            </label>
             <input
               name="email"
               value={formData.email}
@@ -155,7 +159,9 @@ export default function SignIn() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-yellow-800 mb-1">Password</label>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">
+              Password
+            </label>
             <input
               name="password"
               value={formData.password}
@@ -176,7 +182,10 @@ export default function SignIn() {
 
         <p className="mt-6 text-center text-sm text-gray-700">
           New to AuctionIt?{" "}
-          <Link to="/SignUp" className="text-yellow-700 font-medium hover:underline">
+          <Link
+            to="/SignUp"
+            className="text-yellow-700 font-medium hover:underline"
+          >
             Create an account
           </Link>
         </p>

@@ -28,8 +28,8 @@ const AllAuctions = () => {
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-6">All Auctions</h1>
       {loading ? (
-        <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-300">
-          <div className="w-16 h-16 border-4 border-yellow-400 border-t-yellow-600 rounded-full animate-spin"></div>
+        <div className="flex justify-center items-center min-h-screen bg-white">
+          <div className="w-16 h-16 border-4 border-yellow-200 border-t-yellow-600 rounded-full animate-spin"></div>
         </div>
       ) : auctions.length === 0 ? (
         <p>No auctions found.</p>
