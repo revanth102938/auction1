@@ -44,7 +44,7 @@ const auctionschema = new Schema({
         type: String,
         enum: ['active', 'ended', 'cancelled'],
         default: 'active'
-    },
+    }
 },{timestamps: true});
 
 const Auction = mongoose.model('Auction', auctionschema);

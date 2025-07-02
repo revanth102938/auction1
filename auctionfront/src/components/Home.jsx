@@ -57,23 +57,44 @@ const Home = () => {
         <ul className="hidden md:flex space-x-6 font-bold">
           {user?.role === "admin" ? (
             <>
-              <li onClick={() => navigate("/admin/dashboard")} className="hover:underline cursor-pointer">
+              <li
+                onClick={() => navigate("/admin/dashboard")}
+                className="hover:underline cursor-pointer"
+              >
                 Admin Dashboard
               </li>
-              <li onClick={() => navigate("/admin/auctions")} className="hover:underline cursor-pointer">
+              <li
+                onClick={() => navigate("/admin/auctions")}
+                className="hover:underline cursor-pointer"
+              >
                 Manage Auctions
               </li>
-              <li onClick={() => navigate("/admin/users")} className="hover:underline cursor-pointer">
+              <li
+                onClick={() => navigate("/admin/users")}
+                className="hover:underline cursor-pointer"
+              >
                 Manage Users
               </li>
             </>
           ) : (
             <>
-              <li onClick={() => navigate("/active-auctions")} className="hover:underline cursor-pointer">
+              <li
+                onClick={() => navigate("/active-auctions")}
+                className="hover:underline cursor-pointer"
+              >
                 Explore Auctions
               </li>
-              <li onClick={() => navigate("/submit-request")} className="hover:underline cursor-pointer">
+              <li
+                onClick={() => navigate("/submit-request")}
+                className="hover:underline cursor-pointer"
+              >
                 Auction Request
+              </li>
+              <li
+                onClick={() => navigate("/my-requests")}
+                className="hover:underline cursor-pointer"
+              >
+                My Auction Requests
               </li>
             </>
           )}
@@ -124,23 +145,62 @@ const Home = () => {
         <div className="absolute top-20 left-0 w-full bg-blue-900 bg-opacity-95 text-white flex flex-col items-start px-6 py-6 space-y-4 z-20 md:hidden">
           {user?.role === "admin" ? (
             <>
-              <span onClick={() => { navigate("/admin/dashboard"); toggleMenu(); }} className="cursor-pointer">
+              <span
+                onClick={() => {
+                  navigate("/admin/dashboard");
+                  toggleMenu();
+                }}
+                className="cursor-pointer"
+              >
                 Admin Dashboard
               </span>
-              <span onClick={() => { navigate("/admin/auctions"); toggleMenu(); }} className="cursor-pointer">
+              <span
+                onClick={() => {
+                  navigate("/admin/auctions");
+                  toggleMenu();
+                }}
+                className="cursor-pointer"
+              >
                 Manage Auctions
               </span>
-              <span onClick={() => { navigate("/admin/users"); toggleMenu(); }} className="cursor-pointer">
+              <span
+                onClick={() => {
+                  navigate("/admin/users");
+                  toggleMenu();
+                }}
+                className="cursor-pointer"
+              >
                 Manage Users
               </span>
             </>
           ) : (
             <>
-              <span onClick={() => { navigate("/active-auctions"); toggleMenu(); }} className="cursor-pointer">
+              <span
+                onClick={() => {
+                  navigate("/active-auctions");
+                  toggleMenu();
+                }}
+                className="cursor-pointer"
+              >
                 Explore Auctions
               </span>
-              <span onClick={() => { navigate("/submit-request"); toggleMenu(); }} className="cursor-pointer">
+              <span
+                onClick={() => {
+                  navigate("/submit-request");
+                  toggleMenu();
+                }}
+                className="cursor-pointer"
+              >
                 Auction Request
+              </span>
+              <span
+                onClick={() => {
+                  navigate("/my-requests");
+                  toggleMenu();
+                }}
+                className="cursor-pointer"
+              >
+                My Auction Requests
               </span>
             </>
           )}

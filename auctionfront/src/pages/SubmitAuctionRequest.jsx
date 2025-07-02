@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AxiosInstance from "../utils/ApiConfig.js";
 import UserContext from "../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,11 @@ import { useNavigate } from "react-router-dom";
 const SubmitAuctionRequest = () => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-
+  useEffect(() => {
+    if (!user) {
+      navigate("/signin");
+    }
+  }, [user, navigate]);
   const [formData, setFormData] = useState({
     name: "",
     description: "",

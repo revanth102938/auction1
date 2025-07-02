@@ -32,4 +32,6 @@ app.use("/api/v1/admin", adminRoutes);
 import bidRoutes from "./routes/bid.routes.js";
 app.use("/api/v1/bid", bidRoutes);
 
+import paymentRoutes from "./routes/payment.routes.js";
+app.use("/api/v1/payment", paymentRoutes);
 export default app;

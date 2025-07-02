@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
 import socket from "../utils/socket";
 import UserContext from "../context/UserContext";
 import AxiosInstance from "../utils/ApiConfig";
+const stripePromise = loadStripe(import.meta.env.VITE_PUBLISHABLE_KEY);
+
 const AuctionPage = () => {
   const navigate = useNavigate();
   const { auctionId } = useParams();
@@ -91,9 +94,28 @@ const AuctionPage = () => {
       }
     });
 
-    socket.on("auction_ended", ({ winner, amount }) => {
+    socket.on("auction_ended", async ({ winner, amount }) => {
       setAuctionEnded(true);
       setWinnerInfo({ winner, amount });
+
+      if (winner === user.username) {
+        setTimeout(async () => {
+          try {
+            const res = await AxiosInstance.post(
+              "/payment/create-checkout-session",
+              {
+                itemName: auctionDetails?.name || "Auction Item",
+                amount,
+              }
+            );
+
+            const stripe = await stripePromise;
+            await stripe.redirectToCheckout({ sessionId: res.data.sessionId });
+          } catch (err) {
+            console.error("Payment redirect failed:", err);
+          }
+        }, 3000);
+      }
     });
 
     return () => {
@@ -182,7 +204,7 @@ const AuctionPage = () => {
         {auctionEnded ? (
           winnerInfo?.winner === user.username ? (
             <div className="text-center text-xl font-bold text-green-600">
-              🎉 Congratulations {user.username}! You won the auction at ₹
+                Congratulations {user.username}! You won the auction at ₹
               {winnerInfo.amount}!
             </div>
           ) : (

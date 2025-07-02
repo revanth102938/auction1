@@ -7,9 +7,12 @@ import Landing from "./pages/Landing.jsx";
 import SubmitAuctionRequest from "./pages/SubmitAuctionRequest.jsx";
 import AdminManageAuctions from "./pages/AdminManageRequests.jsx";
 import AllAuctions from "./pages/AllAuctions.jsx";
-import Layout from "./pages/Layout.jsx"; 
+import Layout from "./pages/Layout.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
-import ErrorPage from "./pages/ErrorPage.jsx"; // Import ErrorPage
+import ErrorPage from "./pages/ErrorPage.jsx";
+import PaymentSuccess from "./pages/PaymentSuccess.jsx";
+import PaymentCancel from "./pages/PaymentCancel.jsx";
+import MyAuctionRequests from "./pages/MyAuctionRequests.jsx";
 function App() {
   return (
     <UserProvider>
@@ -24,6 +27,9 @@ function App() {
             <Route path="/submit-request" element={<SubmitAuctionRequest />} />
             <Route path="/admin/auctions" element={<AdminManageAuctions />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/payment-cancel" element={<PaymentCancel />} />
+            <Route path="/my-requests" element={<MyAuctionRequests />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
