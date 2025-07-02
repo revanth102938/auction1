@@ -10,7 +10,6 @@ const MyAuctionRequests = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Redirect if user is not logged in
     if (!user) {
       navigate("/signin");
       return;

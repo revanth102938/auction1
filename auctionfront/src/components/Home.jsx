@@ -35,7 +35,7 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      {/* Background Image */}
+      
       <div className="w-full h-screen relative">
         <img
           src="/pexels-bentonphotocinema-1095601.jpg"
@@ -44,7 +44,7 @@ const Home = () => {
         />
       </div>
 
-      {/* Navigation */}
+      
       <nav className="w-full absolute top-0 p-5 flex justify-between items-center text-white z-20">
         <h1
           onClick={() => navigate("/")}
@@ -53,7 +53,7 @@ const Home = () => {
           AuctionIt
         </h1>
 
-        {/* Desktop Nav */}
+        
         <ul className="hidden md:flex space-x-6 font-bold">
           {user?.role === "admin" ? (
             <>
@@ -100,7 +100,7 @@ const Home = () => {
           )}
         </ul>
 
-        {/* Desktop User Buttons */}
+        
         <div className="hidden md:flex items-center space-x-4">
           {user ? (
             <>
@@ -130,7 +130,7 @@ const Home = () => {
           )}
         </div>
 
-        {/* Mobile Menu Toggle */}
+        
         <div className="md:hidden z-30" onClick={toggleMenu}>
           {menuOpen ? (
             <AiOutlineClose size={28} className="text-white" />
@@ -140,7 +140,7 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      
       {menuOpen && (
         <div className="absolute top-20 left-0 w-full bg-blue-900 bg-opacity-95 text-white flex flex-col items-start px-6 py-6 space-y-4 z-20 md:hidden">
           {user?.role === "admin" ? (
@@ -243,7 +243,7 @@ const Home = () => {
         </div>
       )}
 
-      {/* Hero Section */}
+      
       <div className="absolute top-0 h-screen flex flex-col space-y-10 justify-center items-center bg-opacity-100 xl:w-1/3 sm:w-1/2 z-10 px-4 text-center">
         <div className="text-center space-y-5 px-5">
           <h2 className="text-2xl font-bold tracking-widest text-white">
