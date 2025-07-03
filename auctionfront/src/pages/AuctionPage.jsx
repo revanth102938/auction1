@@ -9,7 +9,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_PUBLISHABLE_KEY);
 const AuctionPage = () => {
   const navigate = useNavigate();
   const { auctionId } = useParams();
-  const { user } = useContext(UserContext);
+  const { user, userLoading } = useContext(UserContext);
   const [bids, setBids] = useState([]);
   const [timeLeft, setTimeLeft] = useState(0);
   const [bidAmount, setBidAmount] = useState("");
@@ -20,10 +20,10 @@ const AuctionPage = () => {
   const [statusChecked, setStatusChecked] = useState(false);
 
   useEffect(() => {
-    if (!user) {
+    if (!userLoading && !user) {
       navigate("/signin");
     }
-  }, [user, navigate]);
+  }, [user, userLoading, navigate]);
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
@@ -203,7 +203,7 @@ const AuctionPage = () => {
         {auctionEnded ? (
           winnerInfo?.winner === user.username ? (
             <div className="text-center text-xl font-bold text-green-600">
-                Congratulations {user.username}! You won the auction at ₹
+              Congratulations {user.username}! You won the auction at ₹
               {winnerInfo.amount}!
             </div>
           ) : (
