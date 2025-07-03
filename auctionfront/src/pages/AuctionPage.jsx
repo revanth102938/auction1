@@ -4,12 +4,14 @@ import { loadStripe } from "@stripe/stripe-js";
 import socket from "../utils/socket";
 import UserContext from "../context/UserContext";
 import AxiosInstance from "../utils/ApiConfig";
+
 const stripePromise = loadStripe(import.meta.env.VITE_PUBLISHABLE_KEY);
 
 const AuctionPage = () => {
   const navigate = useNavigate();
   const { auctionId } = useParams();
   const { user, userLoading } = useContext(UserContext);
+
   const [bids, setBids] = useState([]);
   const [timeLeft, setTimeLeft] = useState(0);
   const [bidAmount, setBidAmount] = useState("");
@@ -18,12 +20,14 @@ const AuctionPage = () => {
   const [auctionEnded, setAuctionEnded] = useState(false);
   const [winnerInfo, setWinnerInfo] = useState(null);
   const [statusChecked, setStatusChecked] = useState(false);
+  const [showRedirectingMessage, setShowRedirectingMessage] = useState(false); // NEW
 
   useEffect(() => {
     if (!userLoading && !user) {
       navigate("/signin");
     }
   }, [user, userLoading, navigate]);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
@@ -48,18 +52,14 @@ const AuctionPage = () => {
         const res = await AxiosInstance.get(`/auctions/${auctionId}`);
         const details = res.data.data;
         setAuctionDetails(details);
-        console.log("Auction Details:", details);
         if (details.status !== "active") {
           setAuctionEnded(true);
-
           if (details.winner && details.finalPrice) {
             try {
               const winnerRes = await AxiosInstance.get(
                 `/users/${details.winner}`
               );
-              console.log("Winner Response:", winnerRes.data);
               const winnerUsername = winnerRes.data.data?.username || "Unknown";
-
               setWinnerInfo({
                 winner: winnerUsername,
                 amount: details.finalPrice,
@@ -98,6 +98,8 @@ const AuctionPage = () => {
       setWinnerInfo({ winner, amount });
 
       if (winner === user.username) {
+        setShowRedirectingMessage(true); // Show message before redirect
+
         setTimeout(async () => {
           try {
             const res = await AxiosInstance.post(
@@ -205,11 +207,15 @@ const AuctionPage = () => {
             <div className="text-center text-xl font-bold text-green-600">
               Congratulations {user.username}! You won the auction at ₹
               {winnerInfo.amount}!
+              {showRedirectingMessage && (
+                <p className="mt-2 text-yellow-600 font-medium animate-pulse">
+                  You are being redirected to the payment page...
+                </p>
+              )}
             </div>
           ) : (
             <div className="text-center text-xl font-bold text-red-500">
-              Auction Ended! Winner: {winnerInfo?.winner} (₹{winnerInfo?.amount}
-              )
+              Auction Ended! Winner: {winnerInfo?.winner} (₹{winnerInfo?.amount})
             </div>
           )
         ) : (
