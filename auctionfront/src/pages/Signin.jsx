@@ -120,7 +120,7 @@ export default function SignIn() {
       navigate("/");
     } catch (err) {
       console.error(err.response?.data || err.message);
-      setErrorMessage("Incorrect email or password");
+      setErrorMessage(err.response?.data || err.message || "Incorrect email or password");
     } finally {
       setLoading(false);
     }

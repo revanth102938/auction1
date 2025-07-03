@@ -10,7 +10,6 @@ const AuctionPage = () => {
   const navigate = useNavigate();
   const { auctionId } = useParams();
   const { user } = useContext(UserContext);
-  console.log("user:", user);
   const [bids, setBids] = useState([]);
   const [timeLeft, setTimeLeft] = useState(0);
   const [bidAmount, setBidAmount] = useState("");

@@ -32,7 +32,7 @@ export default function SignUp() {
       navigate("/");
     } catch (err) {
       console.error(err.response?.data || err.message);
-      setErrorMessage("Registration failed. Try again.");
+      setErrorMessage(err.response?.data || err.message || "An error occurred");
     }
   };
 

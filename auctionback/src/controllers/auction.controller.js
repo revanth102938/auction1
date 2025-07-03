@@ -16,6 +16,9 @@ const getallactiveauctions = asynchandler(async (req, res) => {
         as: "createdby"
       }
     },
+    {
+      $sort: { starttime: -1 } 
+    },
     { $unwind: "$createdby" },
     {
       $project: {
@@ -34,9 +37,9 @@ const getallactiveauctions = asynchandler(async (req, res) => {
           avatar: 1
         }
       }
-    }
+    },
   ]);
-
+  console.log("Active Auctions:", activeauctions);
   if (!activeauctions || activeauctions.length === 0) {
     throw new apierror(404, "No active auctions found");
   }
@@ -100,6 +103,7 @@ const getauctionbyid = asynchandler(async (req, res) => {
 const getallauctions = asynchandler(async (req, res) => {
   const auctions = await Auction.find({})
     .select("_id name description imageUrl baseprice starttime endtime status")
+    .sort({ starttime: -1 }) 
     .lean();
 
   if (!auctions || auctions.length === 0) {
