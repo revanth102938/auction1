@@ -44,7 +44,7 @@ app.use((err, req, res, next) => {
     statuscode: statusCode,
     message,
     errors: err.errors || [],
-    stack: process.env.NODE_ENV === "development" ? err.stack : undefined
+    stack: err.stack || undefined
   });
 });
 
