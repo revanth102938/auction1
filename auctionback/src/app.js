@@ -34,4 +34,18 @@ app.use("/api/v1/bid", bidRoutes);
 
 import paymentRoutes from "./routes/payment.routes.js";
 app.use("/api/v1/payment", paymentRoutes);
+
+app.use((err, req, res, next) => {
+  const statusCode = err.statuscode || 500;
+  const message = err.message || "Internal Server Error";
+
+  return res.status(statusCode).json({
+    success: false,
+    statuscode: statusCode,
+    message,
+    errors: err.errors || [],
+    stack: process.env.NODE_ENV === "development" ? err.stack : undefined
+  });
+});
+
 export default app;

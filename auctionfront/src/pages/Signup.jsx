@@ -31,8 +31,8 @@ export default function SignUp() {
       await fetchUser();
       navigate("/");
     } catch (err) {
-      console.error(err.response?.data || err.message);
-      setErrorMessage(err.response?.data || err.message || "An error occurred");
+      console.error(err.response?.data?.message || err.message);
+      setErrorMessage(err.response?.data.message || err.message || "An error occurred");
     }
   };
 
