@@ -4,15 +4,14 @@ import AxiosInstance from "../utils/ApiConfig";
 import UserContext from "../context/UserContext";
 
 const MyAuctionRequests = () => {
-  const { user } = useContext(UserContext);
+  const { user,userLoading } = useContext(UserContext);
   const navigate = useNavigate();
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) {
+    if (!userLoading && !user) {
       navigate("/signin");
-      return;
     }
 
     const fetchMyRequests = async () => {
@@ -27,7 +26,7 @@ const MyAuctionRequests = () => {
     };
 
     fetchMyRequests();
-  }, [user, navigate]);
+  }, [user, userLoading,navigate]);
 
   return (
     <div className="max-w-5xl mx-auto p-6">

@@ -6,13 +6,11 @@ import { asynchandler } from '../utils/asynchandler.js';
 
 export const verifyjwt = asynchandler(async (req, res, next) => {
     try {
-        // console.log("Cookies:", req.cookies);
         const token = req.cookies?.accesstoken || req.header('Authorization')?.replace('Bearer ', '');
         if (!token) {
             throw new apierror(401, 'Access token is required');
         }
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        // console.log("decoded token:",decoded)
         const user = await User.findById(decoded?.id).select('-password -refreshtoken');
         if (!user) {
             throw new apierror(404, 'User not found');

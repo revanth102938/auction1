@@ -4,13 +4,13 @@ import UserContext from "../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 const SubmitAuctionRequest = () => {
-  const { user } = useContext(UserContext);
+  const { user, userLoading } = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) {
+    if (!userLoading && !user) {
       navigate("/signin");
     }
-  }, [user, navigate]);
+  }, [user, userLoading, navigate]);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
