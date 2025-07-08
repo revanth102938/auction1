@@ -1,10 +1,10 @@
-# AuctionMainDev
+# AuctionIt
 
-AuctionMainDev is a comprehensive web application designed to streamline the process of conducting online auctions. The platform provides a secure and user-friendly environment where individuals and businesses can list items for auction, place bids in real time, and manage transactions efficiently.
+AuctionIt is a comprehensive web application designed to streamline the process of conducting online auctions. The platform provides a secure and user-friendly environment where individuals and businesses can list items for auction, place bids in real time, and manage transactions efficiently.
 
 ## Project Overview
 
-AuctionMainDev supports both buyers and sellers with a range of features:
+AuctionIt supports both buyers and sellers with a range of features:
 
 - **User Registration and Authentication:** Users can create accounts, log in securely, and manage their profiles. Authentication ensures that only authorized users can participate in auctions.
 - **Listing Creation and Management:** Sellers can easily create new auction listings, upload item images, set starting prices, and define auction durations. Listings can be edited or removed as needed.
@@ -14,7 +14,7 @@ AuctionMainDev supports both buyers and sellers with a range of features:
 
 ## Technology Stack
 
-AuctionMainDev is built using modern web technologies, including:
+AuctionIt is built using modern web technologies, including:
 
 - **Frontend:** React.js for a responsive and interactive user interface.
 - **Backend:** Node.js and Express.js for handling API requests and business logic.
@@ -28,4 +28,4 @@ AuctionMainDev is built using modern web technologies, including:
 - Businesses hosting timed auctions for products or services.
 - Charity organizations running fundraising auctions online.
 
-AuctionMainDev aims to make online auctions accessible, fair, and secure for everyone involved.
+AuctionIt aims to make online auctions accessible, fair, and secure for everyone involved.
