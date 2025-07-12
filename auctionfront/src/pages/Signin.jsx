@@ -28,7 +28,7 @@ export default function SignIn() {
       await fetchUser();
       navigate("/");
     } catch (err) {
-      console.error(err.response?.data.message || err.message);
+      // console.error(err.response?.data.message || err.message);
       setErrorMessage(err.response?.data.message || err.message || "Incorrect email or password");
     } finally {
       setLoading(false);

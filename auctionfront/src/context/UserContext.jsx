@@ -10,7 +10,7 @@ export const UserProvider = ({ children }) => {
     try {
       const res = await AxiosInstance.get("/users/me");
       setUser(res.data.data);
-      console.log("user details:", res.data.data);
+      // console.log("user details:", res.data.data);
     } catch (err) {
       setUser(null);
     } finally {

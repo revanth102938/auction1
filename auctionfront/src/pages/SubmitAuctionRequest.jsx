@@ -58,7 +58,7 @@ const SubmitAuctionRequest = () => {
         navigate("/");
       }, 2000);
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       setError("Failed to submit auction request");
     } finally {
       setLoading(false);

@@ -39,7 +39,7 @@ const getallactiveauctions = asynchandler(async (req, res) => {
       }
     },
   ]);
-  console.log("Active Auctions:", activeauctions);
+  // console.log("Active Auctions:", activeauctions);
   if (!activeauctions || activeauctions.length === 0) {
     throw new apierror(404, "No active auctions found");
   }

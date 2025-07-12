@@ -21,7 +21,7 @@ const Header = () => {
       setUser(null);
       navigate("/");
     } catch (err) {
-      console.error("Logout failed:", err);
+      // console.error("Logout failed:", err);
     }
   };
 
