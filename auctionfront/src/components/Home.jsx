@@ -38,7 +38,7 @@ const Home = () => {
       
       <div className="w-full h-screen relative">
         <img
-          src="/pexels-bentonphotocinema-1095601.jpg"
+          src="/pexels-bentonphotocinema-1095601.webp"
           alt="auction background"
           className="w-full h-full object-cover"
         />

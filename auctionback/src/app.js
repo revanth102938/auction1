@@ -16,6 +16,9 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 
 import userRouter from './routes/user.routes.js';
 app.use("/api/v1/users", userRouter);
