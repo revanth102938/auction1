@@ -43,7 +43,7 @@ const Header = () => {
         <Link to="/" className={iconButtonClass} title="Home">
           <AiOutlineHome />
         </Link>
-        <Link to="/auctions" className={iconButtonClass} title="Auctions">
+        <Link to="/active-auctions" className={iconButtonClass} title="Auctions">
           <FaGavel />
         </Link>
         {user?.role === "admin" && (
