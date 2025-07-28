@@ -29,3 +29,11 @@ AuctionIt is built using modern web technologies, including:
 - Charity organizations running fundraising auctions online.
 
 AuctionIt aims to make online auctions accessible, fair, and secure for everyone involved.
+
+---
+
+## Demo Video
+
+Watch a demo of AuctionIt in action:
+
+[![AuctionIt Demo Video](https://player.cloudinary.com/embed/?cloud_name=dp81dmt63&public_id=Untitled_design_z6rhox&profile=cld-default)
